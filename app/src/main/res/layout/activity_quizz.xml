@@ -1,6 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_weight="1.7"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="current score : "
+            android:textSize="20sp"
+            android:gravity="left"
+            android:textColor="@color/colorText"></TextView>
+
+        <TextView
+            android:id="@+id/currentScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="20sp"
+            android:gravity="left"
+            android:textColor="@color/colorText"></TextView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Question"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/colorText"
+            android:layout_marginBottom="20dp"></TextView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/I"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="answer1"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:onClick="onClick">
+        </Button>
+
+        <Button
+            android:id="@+id/II"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="answer2"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:onClick="onClick">
+        </Button>
+
+        <Button
+            android:id="@+id/III"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="answer3"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:onClick="onClick">
+        </Button>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

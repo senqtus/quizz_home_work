@@ -4,6 +4,7 @@ package com.example.quizz_home_work;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.quizz_home_work.data.Storage;
@@ -22,7 +23,7 @@ public class HomeActivity extends Activity {
             score.setText(top_score);
         }
     }
-    public void StartQuiz(){
+    public void startQuiz(View view){
         Intent transfer=new Intent(this,QuizzActivity.class);
         startActivity(transfer);
     }
