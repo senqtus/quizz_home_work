@@ -1,4 +1,4 @@
-package ge.tsu.android.lecture3.data;
+package com.example.quizz_home_work.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,11 +19,6 @@ public class StorageSharePreferenceImpl implements Storage {
   public String get(Context context, String key) {
     SharedPreferences sharedPref = getInstance(context);
     return sharedPref.getString(key, null);
-  }
-
-  @Override
-  public boolean exists(Context context, String key) {
-    return get(context, key) != null;
   }
 
   private SharedPreferences getInstance(Context context) {

@@ -1,4 +1,4 @@
-package ge.tsu.android.lecture3.data;
+package com.example.quizz_home_work.data;
 
 import android.content.Context;
 
@@ -8,5 +8,4 @@ public interface Storage {
 
   String get(Context context, String key);
 
-  boolean exists(Context context, String key);
 }
