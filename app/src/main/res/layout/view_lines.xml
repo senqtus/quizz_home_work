@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground">
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/row_model"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Question"
+    android:textStyle="bold"
+    android:textSize="30sp"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="5dp"
+    android:padding="2dp"
+    android:textColor="@color/colorText"
+    android:longClickable="true"
+    />
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -6,47 +6,48 @@
     android:gravity="center"
     android:background="@color/colorBackground">
 
-    <TextView
+
+    <EditText
+        android:id="@+id/newQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Top Score :"
+        android:hint="Question"
         android:textSize="30sp"
-        android:gravity="center"
         android:textColor="@color/colorText"
-         android:layout_marginBottom="20dp"></TextView>
-    <TextView
-        android:id="@+id/top_score"
+        android:textColorHint="@color/colorText"
+        android:layout_marginBottom="20dp"></EditText>
+    <EditText
+        android:id="@+id/answer1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="35sp"
-        android:gravity="center"
+        android:hint="Correct Answer"
+        android:textSize="30sp"
         android:textColor="@color/colorText"
-        android:layout_marginBottom="50dp"></TextView>
+        android:textColorHint="@color/colorText"></EditText>
+    <EditText
+        android:id="@+id/answer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Wrong Answer"
+        android:textSize="30sp"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorText"></EditText>
+    <EditText
+        android:id="@+id/answer3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Wrong Answer"
+        android:textSize="30sp"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorText"></EditText>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:text="Add Question"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
-        android:onClick="startQuiz">
+        android:onClick="addQuestion">
     </Button>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Questions"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:onClick="Questions">
-    </Button>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="History"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:onClick="History">
-    </Button>
-
 </androidx.appcompat.widget.LinearLayoutCompat>

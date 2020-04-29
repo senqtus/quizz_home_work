@@ -7,18 +7,23 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import com.example.quizz_home_work.data.HistoryRow;
+import com.example.quizz_home_work.data.HistoryStorage;
+import com.example.quizz_home_work.data.QuizStorage;
 import com.example.quizz_home_work.data.Storage;
-import com.example.quizz_home_work.data.StorageSharePreferenceImpl;
+import com.example.quizz_home_work.data.StorageImplementation;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Calendar;
+import java.util.Collections;
 
 public class QuizzActivity extends Activity {
     public TextView question;
+    public String correct_answer;
     public TextView current_score;
     public ArrayList<Button> buttons;
-    public int qustions_limit=4;
-    public int current_correct_answer;
+    public int questions_limit;
+    Object storageAsObject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,33 +34,72 @@ public class QuizzActivity extends Activity {
         buttons.add((Button)findViewById(R.id.I));
         buttons.add((Button)findViewById(R.id.II));
         buttons.add((Button)findViewById(R.id.III));
+        Storage storage = new StorageImplementation();
+        storageAsObject = storage
+                .getObject(this, StorageImplementation.QUESTIONS, QuizStorage.class);
+        if(storageAsObject==null){
+            Intent home_page=new Intent(this,HomeActivity.class);
+            startActivity(home_page);
+            finish();
+            return;
+        }
+        questions_limit=((QuizStorage) storageAsObject).getQuestions().size();
         generateNextQuestion();
     }
     public void generateNextQuestion(){
-        if (qustions_limit==0) {
-            Storage storage = new StorageSharePreferenceImpl();
-            String top_score=storage.get(this,"top_score");
-            if(top_score!=null){
-                top_score=Integer.toString(Math.max(Integer.parseInt(top_score),Integer.parseInt(current_score.getText().toString())));
-            }
-            else{
-                top_score=current_score.getText().toString();
-            }
-            storage.save(this,"top_score",top_score);
+        if (questions_limit==0) {
+            finishWork();
             Intent home_page=new Intent(this,HomeActivity.class);
             startActivity(home_page);
+            finish();
             return;
         }
-        question.setText("Random Question " + Integer.toString(qustions_limit));
+        question.setText(((QuizStorage) storageAsObject).getQuestions().get(questions_limit-1).getQuestion());
+        ArrayList<String> shuffled_answers=((QuizStorage) storageAsObject).getQuestions().get(questions_limit-1).getAnswer();
+        correct_answer=shuffled_answers.get(0);
+        Collections.shuffle(shuffled_answers);
         for(int i =0;i<3;i++){
-            buttons.get(i).setText("Random answer "+Integer.toString(i));
+            buttons.get(i).setText(shuffled_answers.get(i));
         }
-        current_correct_answer=new Random().nextInt(3);
-        qustions_limit-=1;
+        questions_limit-=1;
+    }
+
+    private void finishWork(){
+        StorageImplementation storage = new StorageImplementation();
+        String top_score=storage.getTopScore(this);
+        if(top_score!=null){
+            top_score=Integer.toString(Math.max(Integer.parseInt(top_score),Integer.parseInt(current_score.getText().toString())));
+        }
+        else{
+            top_score=current_score.getText().toString();
+        }
+        storage.saveTopScore(this,top_score);
+
+
+        HistoryRow newHistory = new HistoryRow();
+
+        newHistory.setTime(Calendar.getInstance().getTime().toString());
+        newHistory.setScore(current_score.getText().toString());
+
+        Object storageAsObject = storage
+                .getObject(this, StorageImplementation.HISTORY, HistoryStorage.class);
+
+        HistoryStorage historyStorage;
+        if (storageAsObject != null) {
+            historyStorage = (HistoryStorage) storageAsObject;
+        } else {
+            historyStorage = new HistoryStorage();
+        }
+
+        historyStorage.getHistory().add(newHistory);
+        storage.add(this, StorageImplementation.HISTORY, historyStorage);
+        return;
     }
 
     public void onClick(View view){
-        if(view.getId()==buttons.get(current_correct_answer).getId()){
+        Button pressed_button=(Button)view;
+
+        if(pressed_button.getText()==correct_answer){
             current_score.setText(Integer.toString(Integer.parseInt(current_score.getText().toString())+10));
         }
         generateNextQuestion();
